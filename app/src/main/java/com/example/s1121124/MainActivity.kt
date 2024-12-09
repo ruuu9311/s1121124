@@ -1,9 +1,11 @@
 package com.example.s1121124
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.animation.AnimatedContentTransitionScope.SlideDirection.Companion.Start
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -20,28 +22,25 @@ class MainActivity : ComponentActivity() {
         setContent {
             S1121124Theme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+                    /*Greeting(
                         name = "Android",
                         modifier = Modifier.padding(innerPadding)
-                    )
+                    )*/
                 }
             }
         }
     }
 }
-
+/*
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
         text = "Hello $name!",
         modifier = modifier
     )
-}
-
+}*/
+/*
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
-    S1121124Theme {
-        Greeting("Android")
-    }
-}
+*/
