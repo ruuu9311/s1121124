@@ -26,6 +26,13 @@ import com.example.s1121124.ui.theme.S1121124Theme
 import androidx.compose.ui.platform.LocalContext
 
 import android.app.Activity
+import androidx.compose.foundation.gestures.detectDragGesturesAfterLongPress
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
 
 class MainActivity : ComponentActivity() {
@@ -50,11 +57,27 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     val activity = (LocalContext.current as? Activity)
+    var colors = arrayListOf(Color(0xff95fe95),Color(0xfffdca0f),Color(0xfffea4a4),Color(0xffa5dfed)
+    )
+    var Number by remember { mutableStateOf(0) }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xff95fe95))
+            .background(colors[Number])
+            .pointerInput(Unit) {
+                detectDragGesturesAfterLongPress(
+                    onDrag = { change, dragAmount -> change.consume()
+                             /*if( dragAmount > 0){
+                                 Number=(Number+1)%colors.size
+                             }
+                            else if(dragAmount < 0){
+                                Number=(Number+1+colors.size)%colors.size
+                            }*/
+                                 }
 
+                )
+            }
     )
         Column(
             horizontalAlignment = Alignment . CenterHorizontally) {
@@ -79,7 +102,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
             }) {
                 Text(text = "結束APP")
             }
+
         }
     }
-
-
